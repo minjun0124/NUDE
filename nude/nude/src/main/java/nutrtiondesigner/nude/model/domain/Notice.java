@@ -1,4 +1,4 @@
 package nutrtiondesigner.nude.model.domain;
 
-public class member {
+public class Notice {
 }
