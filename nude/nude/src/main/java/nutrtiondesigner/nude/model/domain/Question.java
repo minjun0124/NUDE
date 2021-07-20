@@ -25,7 +25,7 @@ public class Question {
     @JoinColumn(name = "member_id")
     private Member member;
 
-    @OneToMany(mappedBy = "question", orphanRemoval = true)
+    @OneToMany(mappedBy = "questions", orphanRemoval = true)
     private List<Answer> answers = new ArrayList<>();
 
 }
