@@ -19,15 +19,14 @@ public class Item {
     private Long code;
     @NonNull
     private String name;
-    @NonNull
     private StockStatus status = StockStatus.IN_STOCK;
     @NonNull
     private int stock;
+    private double calories = 0;
+    private double carbohydrate = 0;
+    private double protein = 0;
+    private double fat = 0;
+    private double vegetable = 0;
     @NonNull
-    private double calories;
-    private double carbohydrate;
-    private double protein;
-    private double fat;
-    private double vegetable;
     private int price;
 }

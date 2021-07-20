@@ -1,6 +1,7 @@
 package nutrtiondesigner.nude.model.domain;
 
 import lombok.Getter;
+import nutrtiondesigner.nude.model.enumeration.OrderStatus;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ public class Orders {
     @GeneratedValue
     @Column(name = "order_code")
     private Long code;
-    private String status;
+    private OrderStatus status = OrderStatus.PENDING;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "member_id")

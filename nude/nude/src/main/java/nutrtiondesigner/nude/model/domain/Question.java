@@ -1,6 +1,7 @@
 package nutrtiondesigner.nude.model.domain;
 
 import lombok.Getter;
+import lombok.NonNull;
 
 import javax.persistence.*;
 
@@ -17,6 +18,7 @@ public class Question {
     @GeneratedValue
     @Column(name = "question_code")
     private Long code;
+    @NonNull
     private String title;
     private String contents;
     private Boolean isAnswered;

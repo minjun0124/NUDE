@@ -1,6 +1,7 @@
 package nutrtiondesigner.nude.model.domain;
 
 import lombok.Getter;
+import lombok.NonNull;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -14,6 +15,7 @@ public class Notice {
     @GeneratedValue
     @Column(name = "notice_code")
     private Long code;
+    @NonNull
     private String title;
     private String contents;
     @Column(name = "view_count")

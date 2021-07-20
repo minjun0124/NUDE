@@ -15,10 +15,15 @@ public class Member {
     @GeneratedValue
     @Column(name = "member_id")
     private Long id;
+    @NonNull
     private int password;
+    @NonNull
     private String name;
+    @NonNull
     private String email;
+    @NonNull
     private String phone;
+    @NonNull
     private Address address;
 
     @OneToMany(mappedBy = "member", cascade = CascadeType.ALL, orphanRemoval = true)
