@@ -4,6 +4,9 @@ import lombok.Getter;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import static javax.persistence.FetchType.*;
 
 @Entity
@@ -20,5 +23,9 @@ public class Question {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")
-    Member member;
+    private Member member;
+
+    @OneToMany(mappedBy = "question", orphanRemoval = true)
+    private List<Answer> answers = new ArrayList<>();
+
 }

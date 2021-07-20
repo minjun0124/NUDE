@@ -15,9 +15,10 @@ public class OrderItem {
 
     @ManyToOne
     @JoinColumn(name = "order_code")
-    Orders orders;
+    private Orders orders;
 
     @ManyToOne
     @JoinColumn(name = "item_code")
-    Item item;
+    private Item item;
+
 }

@@ -14,9 +14,9 @@ public class CartItem {
 
     @ManyToOne
     @JoinColumn(name = "cart_code")
-    Cart cart;
+    private Cart cart;
 
     @ManyToOne
     @JoinColumn(name = "item_code")
-    Item item;
+    private Item item;
 }

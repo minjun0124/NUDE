@@ -17,5 +17,5 @@ public class Delivery {
 
     @ManyToOne
     @JoinColumn(name = "order_code")
-    Orders orders;
+    private Orders orders;
 }

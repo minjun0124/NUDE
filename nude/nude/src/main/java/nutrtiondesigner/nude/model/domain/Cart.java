@@ -3,6 +3,9 @@ package nutrtiondesigner.nude.model.domain;
 import lombok.Getter;
 
 import javax.persistence.*;
+import java.util.List;
+
+import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter
@@ -14,7 +17,10 @@ public class Cart {
     private Long code;
     private int price;
 
-    @OneToOne
-    @JoinColumn(name = "member_id")
-    Member member;
+    @OneToOne(fetch = LAZY)
+    @JoinColumn(name = "member_id", unique = true)
+    private Member member;
+
+    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CartItem> cartItem;
 }

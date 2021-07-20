@@ -2,6 +2,7 @@ package nutrtiondesigner.nude.model.domain;
 
 
 import lombok.Getter;
+import lombok.NonNull;
 import nutrtiondesigner.nude.model.enumeration.StockStatus;
 
 import javax.persistence.Column;
@@ -16,9 +17,13 @@ public class Item {
     @GeneratedValue
     @Column(name = "item_code")
     private Long code;
+    @NonNull
     private String name;
-    private StockStatus status;
+    @NonNull
+    private StockStatus status = StockStatus.IN_STOCK;
+    @NonNull
     private int stock;
+    @NonNull
     private double calories;
     private double carbohydrate;
     private double protein;

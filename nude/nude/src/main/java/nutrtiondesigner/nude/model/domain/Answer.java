@@ -3,7 +3,6 @@ package nutrtiondesigner.nude.model.domain;
 import lombok.Getter;
 
 import javax.persistence.*;
-import java.util.List;
 
 import static javax.persistence.FetchType.*;
 
@@ -19,5 +18,5 @@ public class Answer {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "question_coce")
-    Question questions;
+    private Question questions;
 }
