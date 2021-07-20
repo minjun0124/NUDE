@@ -2,10 +2,7 @@ package nutrtiondesigner.nude.model.domain;
 
 import lombok.Getter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -15,4 +12,11 @@ public class CartItem {
     @GeneratedValue
     private Long code;
 
+    @ManyToOne
+    @JoinColumn(name = "cart_code")
+    Cart cart;
+
+    @ManyToOne
+    @JoinColumn(name = "item_code")
+    Item item;
 }

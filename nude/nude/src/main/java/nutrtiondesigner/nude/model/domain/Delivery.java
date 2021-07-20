@@ -4,9 +4,7 @@ package nutrtiondesigner.nude.model.domain;
 import lombok.Getter;
 import nutrtiondesigner.nude.model.enumeration.DelivStatus;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -16,4 +14,8 @@ public class Delivery {
     private Long code;
     private Address address;
     private DelivStatus status;
+
+    @ManyToOne
+    @JoinColumn(name = "order_code")
+    Orders orders;
 }

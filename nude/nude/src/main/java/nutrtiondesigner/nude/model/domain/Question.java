@@ -2,10 +2,9 @@ package nutrtiondesigner.nude.model.domain;
 
 import lombok.Getter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+
+import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter
@@ -18,4 +17,8 @@ public class Question {
     private String title;
     private String contents;
     private Boolean isAnswered;
+
+    @ManyToOne(fetch = LAZY)
+    @JoinColumn(name = "member_id")
+    Member member;
 }

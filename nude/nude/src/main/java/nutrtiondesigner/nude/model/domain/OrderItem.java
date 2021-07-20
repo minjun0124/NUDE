@@ -3,9 +3,7 @@ package nutrtiondesigner.nude.model.domain;
 
 import lombok.Getter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -14,4 +12,12 @@ public class OrderItem {
     @GeneratedValue
     private Long code;
     private int price;
+
+    @ManyToOne
+    @JoinColumn(name = "order_code")
+    Orders orders;
+
+    @ManyToOne
+    @JoinColumn(name = "item_code")
+    Item item;
 }
