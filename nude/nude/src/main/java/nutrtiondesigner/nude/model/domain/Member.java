@@ -1,7 +1,9 @@
 package nutrtiondesigner.nude.model.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
+import nutrtiondesigner.nude.model.form.SignUpForm;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class Member {
 
     @Id
@@ -16,9 +19,9 @@ public class Member {
     @Column(name = "member_id")
     private Long id;
     @NonNull
-    private int password;
+    private String username;
     @NonNull
-    private String name;
+    private String password;
     @NonNull
     private String email;
     @NonNull
@@ -31,4 +34,13 @@ public class Member {
 
     @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     private Cart cart;
+
+    public Member(SignUpForm signUpForm) {
+        id = signUpForm.getId();
+        password = signUpForm.getPassword();
+        username = signUpForm.getUsername();
+        email = signUpForm.getEmail();
+        phone = signUpForm.getPhone();
+        address = signUpForm.getAddress();
+    }
 }
