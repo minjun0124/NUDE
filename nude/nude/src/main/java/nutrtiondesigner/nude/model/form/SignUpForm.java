@@ -1,32 +1,42 @@
 package nutrtiondesigner.nude.model.form;
 
-import lombok.Data;
-import lombok.NonNull;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.*;
 import nutrtiondesigner.nude.model.domain.Address;
-import nutrtiondesigner.nude.model.domain.Member;
+import nutrtiondesigner.nude.model.domain.User;
 
-@Data
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class SignUpForm {
 
-    @NonNull
-    private Long id;
-    @NonNull
+    @NotNull
+    @Size(min = 3, max = 50)
     private String username;
-    @NonNull
+
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @NotNull
+    @Size(min = 3, max = 100)
     private String password;
-    @NonNull
+
+    @NotNull
+    @Size(min = 3, max = 50)
+    private String nickname;
+
+    @NotNull
+    @Size(min = 3, max = 50)
     private String email;
-    @NonNull
+
+    @NotNull
+    @Size(min = 3, max = 50)
     private String phone;
-    @NonNull
+
+    @NotNull
     private Address address;
 
-    public SignUpForm(Member member) {
-        id = member.getId();
-        password = member.getPassword();
-        username = member.getUsername();
-        email = member.getEmail();
-        phone = member.getPhone();
-        address = member.getAddress();
-    }
 }

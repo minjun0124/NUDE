@@ -25,7 +25,7 @@ public class Question {
 
     @ManyToOne(fetch = LAZY)
     @JoinColumn(name = "member_id")
-    private Member member;
+    private User user;
 
     @OneToMany(mappedBy = "questions", orphanRemoval = true)
     private List<Answer> answers = new ArrayList<>();

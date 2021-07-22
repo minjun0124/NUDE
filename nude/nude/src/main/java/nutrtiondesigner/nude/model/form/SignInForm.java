@@ -1,16 +1,22 @@
 package nutrtiondesigner.nude.model.form;
 
-import lombok.Data;
-import lombok.NonNull;
-import nutrtiondesigner.nude.model.domain.Address;
-import nutrtiondesigner.nude.model.domain.Member;
+import lombok.*;
 
-@Data
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Getter
+@Setter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class SignInForm {
 
-    @NonNull
-    private Long id;
-    @NonNull
-    private String password;
+    @NotNull
+    @Size(min = 3, max = 50)
+    private String username;
 
+    @NotNull
+    @Size(min = 3, max = 100)
+    private String password;
 }

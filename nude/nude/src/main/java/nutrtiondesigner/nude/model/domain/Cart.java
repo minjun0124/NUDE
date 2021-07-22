@@ -19,7 +19,7 @@ public class Cart {
 
     @OneToOne(fetch = LAZY)
     @JoinColumn(name = "member_id", unique = true)
-    private Member member;
+    private User user;
 
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CartItem> cartItem;
