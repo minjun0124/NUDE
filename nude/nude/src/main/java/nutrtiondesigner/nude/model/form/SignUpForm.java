@@ -26,17 +26,13 @@ public class SignUpForm {
 
     @NotNull
     @Size(min = 3, max = 50)
-    private String nickname;
-
-    @NotNull
-    @Size(min = 3, max = 50)
     private String email;
 
     @NotNull
     @Size(min = 3, max = 50)
     private String phone;
 
-    @NotNull
+//    @NotNull
     private Address address;
 
 }

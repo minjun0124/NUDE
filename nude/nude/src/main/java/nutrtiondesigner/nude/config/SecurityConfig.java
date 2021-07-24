@@ -20,27 +20,6 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true) //@PreAuthorize 어노테이션을 메소드단위로 추가하기 위해서 적용
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
-//    /**
-//     * h2-console 하위 모든 요청들과 파비콘 관련 요청은 SpringSecurity 로직을 수행하지 않도록
-//     */
-//    @Override
-//    public void configure(WebSecurity web) throws Exception {
-//        web
-//                .ignoring()
-//                .antMatchers(
-//                        "/h2-console/**"
-//                        , "/favicon.ico"
-//                );
-//    }
-//
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeRequests()                                // HttpServletRequest 를 사용하는 요청들에 대한 접근제한을 설정하겠다.
-//                .antMatchers("/api/hello").permitAll()   // "/api/hello" 에 대한 접근은 인증없이 접근을 허용하겠다.
-//                .anyRequest().authenticated();                      // 그 외 나머지는 인증 정보가 필요하다.
-//    }
-
     private final TokenProvider tokenProvider;
     private final JwtAuthenticationEntryPoint jwtAuthenticationEntryPoint;
     private final JwtAccessDeniedHandler jwtAccessDeniedHandler;
@@ -109,6 +88,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers("/api/authenticate").permitAll()
                 .antMatchers("/api/signup").permitAll()
+                .antMatchers("/item/category/**").permitAll()
                 .anyRequest().authenticated()
 
                 // JwtFilter 를 addFilterBefore 로 등록했던 JwtSecurityConfig 클래스를 적용

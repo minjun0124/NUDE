@@ -25,9 +25,7 @@ public class UserController {
 
     // UserDto 를 받아서 userService 의 signup 메소드를 호출
     @PostMapping("/signup")
-    public ResponseEntity<User> signup(
-            @Valid @RequestBody SignUpForm signUpForm
-    ) {
+    public ResponseEntity<User> signup(@Valid @RequestBody SignUpForm signUpForm) {
         return ResponseEntity.ok(userService.signup(signUpForm));
     }
 

@@ -55,4 +55,26 @@ public class AuthController {
         // TokenDto를 이용해서 ResponseBody 에도 넣어서 return
         return new ResponseEntity<>(new TokenDto(jwt), httpHeaders, HttpStatus.OK);
     }
+
+    /**
+     * TODO: JWT token Redis
+     */
+//    @PostMapping("/logout")
+//    public ResponseEntity logout() {
+//
+//    }
+    /**
+     * TODO: Find Id by email credential
+     */
+//    @PostMapping("/findId")
+//    public ResponseEntity findId() {
+//
+//    }
+    /**
+     * TODO: password reissue by email credential
+     */
+//    @PostMapping("/findPw")
+//    public ResponseEntity findPw() {
+//
+//    }
 }

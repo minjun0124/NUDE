@@ -1,12 +1,15 @@
 package nutrtiondesigner.nude.model.domain;
 
+import lombok.Data;
+
 import javax.persistence.Embeddable;
 
 @Embeddable
+@Data
 public class Address {
 
     private String city;
-    private String steet;
+    private String street;
     private String zipcode;
 
 }

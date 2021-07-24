@@ -1,9 +1,11 @@
 package nutrtiondesigner.nude.service;
 
+import lombok.extern.slf4j.Slf4j;
 import nutrtiondesigner.nude.model.domain.Authority;
 import nutrtiondesigner.nude.model.domain.User;
 import nutrtiondesigner.nude.model.form.SignUpForm;
 import nutrtiondesigner.nude.repository.UserRepository;
+import nutrtiondesigner.nude.util.SecurityUtil;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +14,8 @@ import java.util.Collections;
 import java.util.Optional;
 
 @Service
+@Slf4j
+@Transactional(readOnly = true)
 public class UserService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
@@ -32,6 +36,8 @@ public class UserService {
             throw new RuntimeException("이미 가입되어 있는 유저입니다.");
         }
 
+        log.info("SignUpForm address : " + signUpForm.getAddress().toString());
+
         // 권한 정보를 만든다.
         //빌더 패턴의 장점
         Authority authority = Authority.builder()
@@ -42,6 +48,9 @@ public class UserService {
         User user = User.builder()
                 .username(signUpForm.getUsername())
                 .password(passwordEncoder.encode(signUpForm.getPassword()))
+                .email(signUpForm.getEmail())
+                .phone(signUpForm.getPhone())
+                .address(signUpForm.getAddress())
                 .authorities(Collections.singleton(authority))
                 .activated(true)
                 .build();
@@ -51,13 +60,11 @@ public class UserService {
     }
 
     // username 을 받아와서 해당하는 유저 객체와 권한 정보를 가져올 수 있다.
-    @Transactional(readOnly = true)
     public Optional<User> getUserWithAuthorities(String username) {
         return userRepository.findOneWithAuthoritiesByUsername(username);
     }
 
     // 현재 SecurityContext 에 저장이 되어 있는 username 에 대한 유저객체와 권한정보를 가져올 수 있다.
-    @Transactional(readOnly = true)
     public Optional<User> getMyUserWithAuthorities() {
         return SecurityUtil.getCurrentUsername().flatMap(userRepository::findOneWithAuthoritiesByUsername);
     }
