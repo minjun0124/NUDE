@@ -1,11 +1,13 @@
 package nutrtiondesigner.nude.model.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class CartItem {
 
     @Id
@@ -19,4 +21,13 @@ public class CartItem {
     @ManyToOne
     @JoinColumn(name = "item_code")
     private Item item;
+
+    private int quantity;
+
+    public CartItem(Cart cart, Item item, int quantity) {
+        this.cart = cart;
+        this.item = item;
+        this.quantity = quantity;
+    }
+
 }

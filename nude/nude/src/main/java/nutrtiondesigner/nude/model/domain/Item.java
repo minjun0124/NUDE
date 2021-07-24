@@ -36,4 +36,5 @@ public class Item {
 
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CategoryItem> categoryItems = new ArrayList<>();
+
 }

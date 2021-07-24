@@ -1,6 +1,8 @@
 package nutrtiondesigner.nude.model.domain;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
@@ -9,6 +11,8 @@ import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter
+@NoArgsConstructor
+@AllArgsConstructor
 public class Cart {
 
     @Id
@@ -21,6 +25,12 @@ public class Cart {
     @JoinColumn(name = "member_id", unique = true)
     private User user;
 
-    @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<CartItem> cartItem;
+    public Cart(User user, int price) {
+        this.user = user;
+        this.price = price;
+    }
+
+    public void changePrice(int changePrice) {
+        price = changePrice;
+    }
 }

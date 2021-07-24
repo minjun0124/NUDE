@@ -1,5 +1,6 @@
 package nutrtiondesigner.nude.controller;
 
+import lombok.RequiredArgsConstructor;
 import nutrtiondesigner.nude.model.domain.User;
 import nutrtiondesigner.nude.model.form.SignUpForm;
 import nutrtiondesigner.nude.service.UserService;
@@ -10,13 +11,11 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api")
 public class UserController {
-    private final UserService userService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+    private final UserService userService;
 
     @GetMapping("/hello")
     public ResponseEntity<String> hello() {

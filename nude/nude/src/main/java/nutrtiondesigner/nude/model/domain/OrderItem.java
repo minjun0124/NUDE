@@ -21,4 +21,5 @@ public class OrderItem {
     @JoinColumn(name = "item_code")
     private Item item;
 
+    private int quantity;
 }

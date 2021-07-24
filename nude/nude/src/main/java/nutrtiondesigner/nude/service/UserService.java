@@ -1,9 +1,12 @@
 package nutrtiondesigner.nude.service;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nutrtiondesigner.nude.model.domain.Authority;
+import nutrtiondesigner.nude.model.domain.Cart;
 import nutrtiondesigner.nude.model.domain.User;
 import nutrtiondesigner.nude.model.form.SignUpForm;
+import nutrtiondesigner.nude.repository.CartRepository;
 import nutrtiondesigner.nude.repository.UserRepository;
 import nutrtiondesigner.nude.util.SecurityUtil;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -15,16 +18,12 @@ import java.util.Optional;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 @Transactional(readOnly = true)
 public class UserService {
     private final UserRepository userRepository;
+    private final CartRepository cartRepository;
     private final PasswordEncoder passwordEncoder;
-
-    // 생성자 주입
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     /**
      * 회원가입을 수행하는 메소드
@@ -56,7 +55,13 @@ public class UserService {
                 .build();
 
         // 유저, 권한 정보를 저장
-        return userRepository.save(user);
+        userRepository.save(user);
+
+        // cart 저장
+        Cart cart = new Cart(user, 0);
+        cartRepository.save(cart);
+
+        return user;
     }
 
     // username 을 받아와서 해당하는 유저 객체와 권한 정보를 가져올 수 있다.

@@ -55,4 +55,8 @@ public class ItemService {
 
         return itemDtoPage;
     }
+
+    public Item getByCode(Long code) {
+        return itemRepository.findById(code).orElse(null);
+    }
 }

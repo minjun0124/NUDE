@@ -1,5 +1,6 @@
 package nutrtiondesigner.nude.controller;
 
+import lombok.RequiredArgsConstructor;
 import nutrtiondesigner.nude.jwt.JwtFilter;
 import nutrtiondesigner.nude.jwt.TokenProvider;
 import nutrtiondesigner.nude.model.form.SignInForm;
@@ -19,17 +20,13 @@ import org.springframework.web.bind.annotation.RestController;
 import javax.validation.Valid;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api")
 public class AuthController {
+
     private final TokenProvider tokenProvider;
     // 스프링 시큐리티의 인증에 대한 지원을 설정하는 몇가지 메소드를 가지고 있다.
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
-
-    // 생성자 주입
-    public AuthController(TokenProvider tokenProvider, AuthenticationManagerBuilder authenticationManagerBuilder) {
-        this.tokenProvider = tokenProvider;
-        this.authenticationManagerBuilder = authenticationManagerBuilder;
-    }
 
     @PostMapping("/authenticate")
     public ResponseEntity<TokenDto> authorize(@Valid @RequestBody SignInForm signInForm) {
