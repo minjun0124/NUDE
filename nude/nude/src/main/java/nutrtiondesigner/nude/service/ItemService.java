@@ -47,4 +47,12 @@ public class ItemService {
 
         return itemDtoPage;
     }
+
+    public Page<ItemDto> getBestItems() {
+        PageRequest pageRequest = PageRequest.of(0, 15, Sort.by(Sort.Direction.DESC, "rating"));
+        Page<Item> bestItems = itemRepository.findAll(pageRequest);
+        Page<ItemDto> itemDtoPage = bestItems.map(i -> new ItemDto(i));
+
+        return itemDtoPage;
+    }
 }

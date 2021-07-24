@@ -4,10 +4,9 @@ package nutrtiondesigner.nude.model.domain;
 import lombok.*;
 import nutrtiondesigner.nude.model.enumeration.StockStatus;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Builder
@@ -28,9 +27,13 @@ public class Item {
     private int stock;
     @NonNull
     private int price;
+    private int rating;
     private double calories = 0;
     private double carbohydrate = 0;
     private double protein = 0;
     private double fat = 0;
     private double vegetable = 0;
+
+    @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<CategoryItem> categoryItems = new ArrayList<>();
 }

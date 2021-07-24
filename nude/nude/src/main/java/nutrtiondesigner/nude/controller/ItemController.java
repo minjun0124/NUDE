@@ -33,12 +33,41 @@ public class ItemController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @GetMapping("/category/{category}")
+    @GetMapping("/{category}")
     public ResponseEntity categoryItem(@PathVariable("category") String category) {
         Page<ItemDto> itemDtoPage = itemService.getCategoryItems(category);
 
         return new ResponseEntity<>(itemDtoPage.getContent(), HttpStatus.OK);
     }
 
+    /**
+     * TODO: Auditing 추가
+     */
+//    @GetMapping("/new")
+//    public ResponseEntity newItem(){
+//        Page<ItemDto> itemDtoPage = itemService.getNewItems();
+//
+//        return new ResponseEntity<>(itemDtoPage.getContent(), HttpStatus.OK);
+//    }
 
+    /**
+     * TODO: 아이템 조회 시 카테고리를 항상 꺼내올 수 있도록
+     * @return
+     */
+    @GetMapping("/best")
+    public ResponseEntity bestItem() {
+        Page<ItemDto> itemDtoPage = itemService.getBestItems();
+
+        return new ResponseEntity<>(itemDtoPage.getContent(), HttpStatus.OK);
+    }
+
+    /**
+     * TODO: slope-one 추천 알고리즘 적용
+     */
+//    @GetMapping("/recommends")
+//    public ResponseEntity recommendItem(){
+//        Page<ItemDto> itemDtoPage = itemService.getRecommendItems();
+//
+//        return new ResponseEntity<>(itemDtoPage.getContent(), HttpStatus.OK);
+//    }
 }

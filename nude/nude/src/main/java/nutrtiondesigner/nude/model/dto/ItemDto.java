@@ -18,18 +18,32 @@ public class ItemDto {
     private String name;
     private int stock;
     private int price;
+    private int rating;
     private double calories = 0;
     private double carbohydrate = 0;
     private double protein = 0;
     private double fat = 0;
     private double vegetable = 0;
 
+    public ItemDto(Item item) {
+        img = item.getImgPath();
+        name = item.getName();
+        stock = item.getStock();
+        price = item.getPrice();
+        rating = item.getRating();
+        calories = item.getCalories();
+        carbohydrate = item.getCarbohydrate();
+        protein = item.getProtein();
+        fat = item.getFat();
+        vegetable = item.getVegetable();
+    }
     public ItemDto(Item item, String categoryName) {
         category = categoryName;
         img = item.getImgPath();
         name = item.getName();
         stock = item.getStock();
         price = item.getPrice();
+        rating = item.getRating();
         calories = item.getCalories();
         carbohydrate = item.getCarbohydrate();
         protein = item.getProtein();
