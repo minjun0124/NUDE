@@ -2,15 +2,12 @@ package nutrtiondesigner.nude.controller;
 
 import lombok.RequiredArgsConstructor;
 import nutrtiondesigner.nude.model.dto.CartInsertDto;
-import nutrtiondesigner.nude.model.dto.CartItemDto;
 import nutrtiondesigner.nude.model.dto.CartListDto;
 import nutrtiondesigner.nude.service.CartService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -29,7 +26,7 @@ public class CartController {
 
     @GetMapping
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public ResponseEntity getCarts(){
+    public ResponseEntity cartsList(){
         CartListDto cartList = cartService.getUserCart();
 
         return new ResponseEntity<>(cartList, HttpStatus.OK);

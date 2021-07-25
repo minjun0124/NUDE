@@ -2,16 +2,17 @@ package nutrtiondesigner.nude.model.domain;
 
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
+@NoArgsConstructor
 public class OrderItem {
     @Id
     @GeneratedValue
     private Long code;
-    private int price;
 
     @ManyToOne
     @JoinColumn(name = "order_code")
@@ -22,4 +23,10 @@ public class OrderItem {
     private Item item;
 
     private int quantity;
+
+    public OrderItem(Orders orders, Item item, int quantity) {
+        this.orders = orders;
+        this.item = item;
+        this.quantity = quantity;
+    }
 }

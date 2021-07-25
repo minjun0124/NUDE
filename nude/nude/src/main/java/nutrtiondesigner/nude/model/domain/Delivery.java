@@ -15,6 +15,7 @@ public class Delivery {
     private Long code;
     @NonNull
     private Address address;
+    @Enumerated(EnumType.STRING)
     private DelivStatus status = DelivStatus.PREPARING;
 
     @ManyToOne

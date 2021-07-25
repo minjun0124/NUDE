@@ -13,6 +13,7 @@ import nutrtiondesigner.nude.model.domain.Item;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ItemDto {
+    private Long code;
     private String img;
     private String category;
     private String name;
@@ -26,6 +27,7 @@ public class ItemDto {
     private double vegetable = 0;
 
     public ItemDto(Item item) {
+        code = item.getCode();
         img = item.getImgPath();
         name = item.getName();
         stock = item.getStock();
@@ -38,6 +40,7 @@ public class ItemDto {
         vegetable = item.getVegetable();
     }
     public ItemDto(Item item, String categoryName) {
+        code = item.getCode();
         category = categoryName;
         img = item.getImgPath();
         name = item.getName();

@@ -22,6 +22,7 @@ public class Item {
     private String name;
     @Column(name = "img_path")
     private String imgPath;
+    @Enumerated(EnumType.STRING)
     private StockStatus status = StockStatus.IN_STOCK;
     @NonNull
     private int stock;
