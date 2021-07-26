@@ -5,9 +5,7 @@ import nutrtiondesigner.nude.model.domain.Item;
 import nutrtiondesigner.nude.model.domain.OrderItem;
 import nutrtiondesigner.nude.model.domain.Orders;
 import nutrtiondesigner.nude.model.domain.User;
-import nutrtiondesigner.nude.model.dto.OrderInsertDto;
-import nutrtiondesigner.nude.model.dto.OrderItemDto;
-import nutrtiondesigner.nude.model.dto.OrderListDto;
+import nutrtiondesigner.nude.model.dto.*;
 import nutrtiondesigner.nude.repository.ItemRepository;
 import nutrtiondesigner.nude.repository.OrderItemRepository;
 import nutrtiondesigner.nude.repository.OrdersRepository;
@@ -51,5 +49,19 @@ public class OrderService {
         Page<OrderListDto> ordersDtoList = ordersList.map(o -> new OrderListDto(o));
 
         return ordersDtoList.getContent();
+    }
+
+    public OrderDetailDto getOrderDetail(Long ordercode) {
+        User user = userService.getMyUserWithAuthorities().get();
+        Orders orders = ordersRepository.findByCodeAndUserId(ordercode, user.getId()).orElse(null);
+        PageRequest pageRequest = PageRequest.of(0, 4);
+        Page<OrderItem> orderItems = orderItemRepository.findFetchJoinByOrderCode(orders.getCode(), pageRequest);
+
+        Page<ItemDetailDto> ordersDtoList = orderItems.map(o -> new ItemDetailDto(o.getItem(), o.getQuantity()));
+
+        OrderDetailDto orderDetailDto = new OrderDetailDto(orders.getCode(), ordersDtoList.getContent()
+                , orders.getPrice(), orders.getStatus());
+
+        return orderDetailDto;
     }
 }

@@ -12,7 +12,7 @@ import nutrtiondesigner.nude.model.domain.Item;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class CartItemDto {
+public class ItemDetailDto {
     private Long code;
     private String img;
     private String category;
@@ -27,7 +27,7 @@ public class CartItemDto {
     private double vegetable = 0;
     private int quantity = 0;
 
-    public CartItemDto(Item item, int quantity) {
+    public ItemDetailDto(Item item, int quantity) {
         code = item.getCode();
         img = item.getImgPath();
         name = item.getName();

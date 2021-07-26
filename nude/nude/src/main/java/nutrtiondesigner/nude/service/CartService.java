@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nutrtiondesigner.nude.model.domain.*;
 import nutrtiondesigner.nude.model.dto.CartInsertDto;
-import nutrtiondesigner.nude.model.dto.CartItemDto;
+import nutrtiondesigner.nude.model.dto.ItemDetailDto;
 import nutrtiondesigner.nude.model.dto.CartListDto;
 import nutrtiondesigner.nude.repository.CartItemRepository;
 import nutrtiondesigner.nude.repository.CartRepository;
@@ -53,7 +53,7 @@ public class CartService {
 
         PageRequest pageRequest = PageRequest.of(0, 3);
         Page<CartItem> cartItems = cartRepository.findFetchJoinItemByCode(cart.getCode(), pageRequest);
-        Page<CartItemDto> itemList = cartItems.map(c -> new CartItemDto(c.getItem(), c.getQuantity()));
+        Page<ItemDetailDto> itemList = cartItems.map(c -> new ItemDetailDto(c.getItem(), c.getQuantity()));
 
         CartListDto cartList = new CartListDto(itemList.getContent(), cart.getPrice());
 

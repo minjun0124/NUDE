@@ -12,15 +12,15 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CartListDto {
-    private List<CartItemDto> cartItemList;
+    private List<ItemDetailDto> cartItemList;
     private SumNutrition sumNutrition;
     private int price;
 
-    public CartListDto(List<CartItemDto> itemList, int price) {
+    public CartListDto(List<ItemDetailDto> itemList, int price) {
         cartItemList = itemList;
         this.price = price;
         sumNutrition = new SumNutrition();
-        for (CartItemDto cartItem : itemList) {
+        for (ItemDetailDto cartItem : itemList) {
             sumNutrition.sum(cartItem);
         }
     }

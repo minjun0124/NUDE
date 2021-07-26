@@ -1,6 +1,7 @@
 package nutrtiondesigner.nude.controller;
 
 import lombok.RequiredArgsConstructor;
+import nutrtiondesigner.nude.model.dto.OrderDetailDto;
 import nutrtiondesigner.nude.model.dto.OrderInsertDto;
 import nutrtiondesigner.nude.model.dto.OrderListDto;
 import nutrtiondesigner.nude.service.OrderService;
@@ -32,6 +33,14 @@ public class OrderController {
         List<OrderListDto> orderList = orderService.getOrderList();
 
         return new ResponseEntity<>(orderList, HttpStatus.OK);
+    }
+
+    @GetMapping("/{ordercode}")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public ResponseEntity orderDetail(@PathVariable Long ordercode) {
+        OrderDetailDto orderDetail = orderService.getOrderDetail(ordercode);
+
+        return new ResponseEntity<>(orderDetail, HttpStatus.OK);
     }
 
 }

@@ -12,7 +12,7 @@ public class SumNutrition {
     private double fat = 0;
     private double vegetable = 0;
 
-    public void sum(CartItemDto cartItem) {
+    public void sum(ItemDetailDto cartItem) {
         int quantity = cartItem.getQuantity();
         calories += cartItem.getCalories() * quantity;
         carbohydrate += cartItem.getCarbohydrate() * quantity;
