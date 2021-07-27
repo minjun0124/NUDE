@@ -86,8 +86,14 @@ public class UserService {
 
     @Transactional
     public void modInfo(SignUpForm signUpForm) {
-        User user = userRepository.findOneWithAuthoritiesByUsername(signUpForm.getUsername()).orElse(null);
+        User user = getMyUserWithAuthorities().get();
         String changePw = passwordEncoder.encode(signUpForm.getPassword());
         user.updateInfo(signUpForm, changePw);
+    }
+
+    @Transactional
+    public void withdraw() {
+        User user = getMyUserWithAuthorities().get();
+        user.withdraw();
     }
 }

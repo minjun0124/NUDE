@@ -67,4 +67,8 @@ public class User {
         phone = signUpForm.getPhone();
         address = signUpForm.getAddress();
     }
+
+    public void withdraw() {
+        activated = false;
+    }
 }

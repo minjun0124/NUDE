@@ -58,4 +58,13 @@ public class UserController {
         userService.modInfo(signUpForm);
         return new ResponseEntity<>(HttpStatus.OK);
     }
+
+    @PutMapping("/user/withdraw")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public ResponseEntity withdrawUser() {
+        userService.withdraw();
+        //TODO: 탈퇴 후 logout
+        
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
