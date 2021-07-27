@@ -1,6 +1,7 @@
 package nutrtiondesigner.nude.controller;
 
 import lombok.RequiredArgsConstructor;
+import nutrtiondesigner.nude.model.dto.OrderStatusDto;
 import nutrtiondesigner.nude.model.dto.OrderDetailDto;
 import nutrtiondesigner.nude.model.dto.OrderInsertDto;
 import nutrtiondesigner.nude.model.dto.OrderListDto;
@@ -23,6 +24,14 @@ public class OrderController {
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity insertOrder(@RequestBody OrderInsertDto orderInsertDto) {
         orderService.insertOrder(orderInsertDto);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public ResponseEntity updateOrderStatus(@RequestBody OrderStatusDto orderStatusDto) {
+        orderService.updateOrderStatus(orderStatusDto);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

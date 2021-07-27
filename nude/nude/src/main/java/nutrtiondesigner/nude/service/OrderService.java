@@ -12,10 +12,12 @@ import nutrtiondesigner.nude.repository.OrdersRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
+@Transactional
 @RequiredArgsConstructor
 public class OrderService {
 
@@ -63,5 +65,10 @@ public class OrderService {
                 , orders.getPrice(), orders.getStatus());
 
         return orderDetailDto;
+    }
+
+    public void updateOrderStatus(OrderStatusDto orderStatusDto) {
+        Orders orders = ordersRepository.findById(orderStatusDto.getOrdercode()).orElse(null);
+        orders.updateStatus(orderStatusDto);
     }
 }

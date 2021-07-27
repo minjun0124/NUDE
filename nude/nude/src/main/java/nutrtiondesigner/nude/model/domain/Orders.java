@@ -2,6 +2,7 @@ package nutrtiondesigner.nude.model.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import nutrtiondesigner.nude.model.dto.OrderStatusDto;
 import nutrtiondesigner.nude.model.enumeration.OrderStatus;
 
 import javax.persistence.*;
@@ -31,5 +32,9 @@ public class Orders {
         this.status = OrderStatus.PENDING;
         this.user = user;
         this.price = price;
+    }
+
+    public void updateStatus(OrderStatusDto orderStatusDto) {
+        status = orderStatusDto.getOrderStatus();
     }
 }
