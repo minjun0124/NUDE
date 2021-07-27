@@ -3,6 +3,7 @@ package nutrtiondesigner.nude.controller;
 import lombok.RequiredArgsConstructor;
 import nutrtiondesigner.nude.model.dto.CartInsertDto;
 import nutrtiondesigner.nude.model.dto.CartListDto;
+import nutrtiondesigner.nude.model.dto.DeleteCartDto;
 import nutrtiondesigner.nude.model.dto.UpdateCartDto;
 import nutrtiondesigner.nude.service.CartService;
 import org.springframework.http.HttpStatus;
@@ -37,6 +38,14 @@ public class CartController {
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity updateCartItem(@RequestBody UpdateCartDto updateCartDto){
         cartService.updateCartItem(updateCartDto);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @DeleteMapping
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public ResponseEntity deleteCartItem(@RequestBody DeleteCartDto deleteCartDto){
+        cartService.deleteCartItem(deleteCartDto);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

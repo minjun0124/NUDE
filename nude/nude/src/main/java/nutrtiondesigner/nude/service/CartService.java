@@ -3,10 +3,7 @@ package nutrtiondesigner.nude.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nutrtiondesigner.nude.model.domain.*;
-import nutrtiondesigner.nude.model.dto.CartInsertDto;
-import nutrtiondesigner.nude.model.dto.ItemDetailDto;
-import nutrtiondesigner.nude.model.dto.CartListDto;
-import nutrtiondesigner.nude.model.dto.UpdateCartDto;
+import nutrtiondesigner.nude.model.dto.*;
 import nutrtiondesigner.nude.repository.CartItemRepository;
 import nutrtiondesigner.nude.repository.CartRepository;
 import org.springframework.data.domain.Page;
@@ -64,5 +61,9 @@ public class CartService {
     public void updateCartItem(UpdateCartDto updateCartDto) {
         CartItem cartItem = cartItemRepository.findByCartCodeAndItemCode(updateCartDto.getCartcode(), updateCartDto.getItemcode()).orElse(null);
         cartItem.updateQuantity(updateCartDto.getQuantity());
+    }
+
+    public void deleteCartItem(DeleteCartDto deleteCartDto) {
+        cartItemRepository.deleteAllByCartCodeAndItemCodes(deleteCartDto.getCartcode(), deleteCartDto.getItemcodes());
     }
 }
