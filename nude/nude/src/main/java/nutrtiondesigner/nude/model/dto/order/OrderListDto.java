@@ -1,4 +1,4 @@
-package nutrtiondesigner.nude.model.dto;
+package nutrtiondesigner.nude.model.dto.order;
 
 import lombok.Data;
 import nutrtiondesigner.nude.model.domain.Orders;
@@ -9,7 +9,7 @@ import javax.persistence.Enumerated;
 
 @Data
 public class OrderListDto {
-    private Long code;
+    private Long orderCode;
 //    TODO: Auditing - 주문 일자
 //    private LocalDateTime orderDate;
     private int price;
@@ -18,7 +18,7 @@ public class OrderListDto {
     private OrderStatus orderStatus;
 
     public OrderListDto(Orders orders) {
-        code = orders.getCode();
+        orderCode = orders.getCode();
         price = orders.getPrice();
         orderStatus = orders.getStatus();
     }

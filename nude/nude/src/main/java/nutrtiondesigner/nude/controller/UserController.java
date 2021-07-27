@@ -2,7 +2,7 @@ package nutrtiondesigner.nude.controller;
 
 import lombok.RequiredArgsConstructor;
 import nutrtiondesigner.nude.model.domain.User;
-import nutrtiondesigner.nude.model.dto.TokenDto;
+import nutrtiondesigner.nude.model.dto.util.TokenDto;
 import nutrtiondesigner.nude.model.form.PwCheckForm;
 import nutrtiondesigner.nude.model.form.SignUpForm;
 import nutrtiondesigner.nude.service.UserService;

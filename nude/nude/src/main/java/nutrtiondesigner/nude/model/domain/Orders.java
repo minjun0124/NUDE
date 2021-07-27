@@ -2,7 +2,7 @@ package nutrtiondesigner.nude.model.domain;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import nutrtiondesigner.nude.model.dto.OrderStatusDto;
+import nutrtiondesigner.nude.model.dto.order.OrderStatusDto;
 import nutrtiondesigner.nude.model.enumeration.OrderStatus;
 
 import javax.persistence.*;

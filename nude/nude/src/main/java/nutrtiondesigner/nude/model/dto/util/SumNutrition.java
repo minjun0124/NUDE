@@ -1,7 +1,8 @@
-package nutrtiondesigner.nude.model.dto;
+package nutrtiondesigner.nude.model.dto.util;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import nutrtiondesigner.nude.model.dto.item.ItemDto;
 
 @Data
 @NoArgsConstructor
@@ -12,7 +13,7 @@ public class SumNutrition {
     private double fat = 0;
     private double vegetable = 0;
 
-    public void sum(ItemDetailDto cartItem) {
+    public void sum(ItemDto cartItem) {
         int quantity = cartItem.getQuantity();
         calories += cartItem.getCalories() * quantity;
         carbohydrate += cartItem.getCarbohydrate() * quantity;

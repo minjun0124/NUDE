@@ -5,7 +5,9 @@ import nutrtiondesigner.nude.model.domain.Item;
 import nutrtiondesigner.nude.model.domain.OrderItem;
 import nutrtiondesigner.nude.model.domain.Orders;
 import nutrtiondesigner.nude.model.domain.User;
-import nutrtiondesigner.nude.model.dto.*;
+import nutrtiondesigner.nude.model.dto.item.ItemDto;
+import nutrtiondesigner.nude.model.dto.item.ItemInsertDto;
+import nutrtiondesigner.nude.model.dto.order.*;
 import nutrtiondesigner.nude.repository.ItemRepository;
 import nutrtiondesigner.nude.repository.OrderItemRepository;
 import nutrtiondesigner.nude.repository.OrdersRepository;
@@ -35,9 +37,9 @@ public class OrderService {
          * TODO: 아래와 같이 코드를 짜면 쿼리가 여러번 수행됨.
          * 어떻게 개선할 수 있을까? 조회쿼리 때문에 벌크성 쿼리도 수행할 수 없다.
          */
-        List<OrderItemDto> codeList = orderInsertDto.getCodeList();
-        for (OrderItemDto order : codeList) {
-            Item item = itemRepository.findById(order.getCode()).orElse(null);
+        List<ItemInsertDto> codeList = orderInsertDto.getCodeList();
+        for (ItemInsertDto order : codeList) {
+            Item item = itemRepository.findById(order.getItemCode()).orElse(null);
             OrderItem orderItem = new OrderItem(orders, item, order.getQuantity());
             orderItemRepository.save(orderItem);
         }
@@ -59,7 +61,7 @@ public class OrderService {
         PageRequest pageRequest = PageRequest.of(0, 4);
         Page<OrderItem> orderItems = orderItemRepository.findFetchJoinByOrderCode(orders.getCode(), pageRequest);
 
-        Page<ItemDetailDto> ordersDtoList = orderItems.map(o -> new ItemDetailDto(o.getItem(), o.getQuantity()));
+        Page<ItemDto> ordersDtoList = orderItems.map(o -> new ItemDto(o.getItem(), o.getQuantity()));
 
         OrderDetailDto orderDetailDto = new OrderDetailDto(orders.getCode(), ordersDtoList.getContent()
                 , orders.getPrice(), orders.getStatus());
@@ -68,7 +70,7 @@ public class OrderService {
     }
 
     public void updateOrderStatus(OrderStatusDto orderStatusDto) {
-        Orders orders = ordersRepository.findById(orderStatusDto.getOrdercode()).orElse(null);
+        Orders orders = ordersRepository.findById(orderStatusDto.getOrderCode()).orElse(null);
         orders.updateStatus(orderStatusDto);
     }
 }

@@ -1,10 +1,10 @@
 package nutrtiondesigner.nude.controller;
 
 import lombok.RequiredArgsConstructor;
-import nutrtiondesigner.nude.model.dto.CartInsertDto;
-import nutrtiondesigner.nude.model.dto.CartListDto;
-import nutrtiondesigner.nude.model.dto.DeleteCartDto;
-import nutrtiondesigner.nude.model.dto.UpdateCartDto;
+import nutrtiondesigner.nude.model.dto.item.ItemInsertDto;
+import nutrtiondesigner.nude.model.dto.cart.CartListDto;
+import nutrtiondesigner.nude.model.dto.cart.DeleteCartDto;
+import nutrtiondesigner.nude.model.dto.cart.UpdateCartDto;
 import nutrtiondesigner.nude.service.CartService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,8 +20,8 @@ public class CartController {
 
     @PostMapping
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
-    public ResponseEntity insertCart(@RequestBody CartInsertDto cartInsertDto){
-        cartService.insertCart(cartInsertDto);
+    public ResponseEntity insertCart(@RequestBody ItemInsertDto itemInsertDto){
+        cartService.insertCart(itemInsertDto);
 
         return new ResponseEntity<>(HttpStatus.OK);
     }

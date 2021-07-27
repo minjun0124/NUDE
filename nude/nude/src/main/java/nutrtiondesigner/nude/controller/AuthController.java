@@ -4,7 +4,7 @@ import lombok.RequiredArgsConstructor;
 import nutrtiondesigner.nude.jwt.JwtFilter;
 import nutrtiondesigner.nude.jwt.TokenProvider;
 import nutrtiondesigner.nude.model.form.SignInForm;
-import nutrtiondesigner.nude.model.dto.TokenDto;
+import nutrtiondesigner.nude.model.dto.util.TokenDto;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package nutrtiondesigner.nude.model.dto;
+package nutrtiondesigner.nude.model.dto.util;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

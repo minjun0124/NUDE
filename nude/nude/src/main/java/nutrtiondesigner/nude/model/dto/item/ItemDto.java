@@ -1,4 +1,4 @@
-package nutrtiondesigner.nude.model.dto;
+package nutrtiondesigner.nude.model.dto.item;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -12,7 +12,7 @@ import nutrtiondesigner.nude.model.domain.Item;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class ItemDetailDto {
+public class ItemDto {
     private Long code;
     private String img;
     private String category;
@@ -27,7 +27,20 @@ public class ItemDetailDto {
     private double vegetable = 0;
     private int quantity = 0;
 
-    public ItemDetailDto(Item item, int quantity) {
+    public ItemDto(Item item) {
+        code = item.getCode();
+        img = item.getImgPath();
+        name = item.getName();
+        stock = item.getStock();
+        price = item.getPrice();
+        rating = item.getRating();
+        calories = item.getCalories();
+        carbohydrate = item.getCarbohydrate();
+        protein = item.getProtein();
+        fat = item.getFat();
+        vegetable = item.getVegetable();
+    }
+    public ItemDto(Item item, int quantity) {
         code = item.getCode();
         img = item.getImgPath();
         name = item.getName();
@@ -40,5 +53,19 @@ public class ItemDetailDto {
         fat = item.getFat();
         vegetable = item.getVegetable();
         this.quantity = quantity;
+    }
+    public ItemDto(Item item, String categoryName) {
+        code = item.getCode();
+        category = categoryName;
+        img = item.getImgPath();
+        name = item.getName();
+        stock = item.getStock();
+        price = item.getPrice();
+        rating = item.getRating();
+        calories = item.getCalories();
+        carbohydrate = item.getCarbohydrate();
+        protein = item.getProtein();
+        fat = item.getFat();
+        vegetable = item.getVegetable();
     }
 }

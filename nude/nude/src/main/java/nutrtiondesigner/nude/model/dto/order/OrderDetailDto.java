@@ -1,12 +1,12 @@
-package nutrtiondesigner.nude.model.dto;
+package nutrtiondesigner.nude.model.dto.order;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import nutrtiondesigner.nude.model.dto.item.ItemDto;
 import nutrtiondesigner.nude.model.enumeration.OrderStatus;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -14,8 +14,8 @@ import java.util.List;
 public class OrderDetailDto {
 //    TODO: Auditing
 //    private LocalDateTime orderDate;
-    private Long code;
-    private List<ItemDetailDto> itemList;
+    private Long orderCode;
+    private List<ItemDto> itemList;
     private int price;
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;

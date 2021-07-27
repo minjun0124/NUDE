@@ -61,7 +61,6 @@ public class User {
     private Set<Authority> authorities;
 
     public void updateInfo(SignUpForm signUpForm, String changePw) {
-        username = signUpForm.getUsername();
         password = changePw;
         email = signUpForm.getEmail();
         phone = signUpForm.getPhone();

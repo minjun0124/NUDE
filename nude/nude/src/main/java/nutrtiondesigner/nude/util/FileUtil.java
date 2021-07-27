@@ -1,6 +1,6 @@
 package nutrtiondesigner.nude.util;
 
-import nutrtiondesigner.nude.model.dto.FileDto;
+import nutrtiondesigner.nude.model.dto.util.FileDto;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.File;

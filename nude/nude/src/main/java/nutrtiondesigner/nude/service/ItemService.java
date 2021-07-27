@@ -5,7 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import nutrtiondesigner.nude.model.domain.Category;
 import nutrtiondesigner.nude.model.domain.CategoryItem;
 import nutrtiondesigner.nude.model.domain.Item;
-import nutrtiondesigner.nude.model.dto.ItemDto;
+import nutrtiondesigner.nude.model.dto.item.ItemDto;
 import nutrtiondesigner.nude.model.form.ItemUpLoadForm;
 import nutrtiondesigner.nude.repository.CategoryItemRepository;
 import nutrtiondesigner.nude.repository.CategoryRepository;

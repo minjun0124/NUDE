@@ -1,10 +1,10 @@
-package nutrtiondesigner.nude.model.dto;
+package nutrtiondesigner.nude.model.dto.order;
 
 import lombok.Data;
 import nutrtiondesigner.nude.model.enumeration.OrderStatus;
 
 @Data
 public class OrderStatusDto {
-    private Long ordercode;
+    private Long orderCode;
     private OrderStatus orderStatus;
 }

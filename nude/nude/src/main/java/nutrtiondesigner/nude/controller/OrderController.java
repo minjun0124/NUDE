@@ -1,10 +1,10 @@
 package nutrtiondesigner.nude.controller;
 
 import lombok.RequiredArgsConstructor;
-import nutrtiondesigner.nude.model.dto.OrderStatusDto;
-import nutrtiondesigner.nude.model.dto.OrderDetailDto;
-import nutrtiondesigner.nude.model.dto.OrderInsertDto;
-import nutrtiondesigner.nude.model.dto.OrderListDto;
+import nutrtiondesigner.nude.model.dto.order.OrderStatusDto;
+import nutrtiondesigner.nude.model.dto.order.OrderDetailDto;
+import nutrtiondesigner.nude.model.dto.order.OrderInsertDto;
+import nutrtiondesigner.nude.model.dto.order.OrderListDto;
 import nutrtiondesigner.nude.service.OrderService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

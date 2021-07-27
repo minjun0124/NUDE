@@ -2,7 +2,7 @@ package nutrtiondesigner.nude.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import nutrtiondesigner.nude.model.dto.ItemDto;
+import nutrtiondesigner.nude.model.dto.item.ItemDto;
 import nutrtiondesigner.nude.model.form.ItemUpLoadForm;
 import nutrtiondesigner.nude.service.ItemService;
 import org.springframework.beans.factory.annotation.Value;

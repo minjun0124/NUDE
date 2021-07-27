@@ -3,7 +3,11 @@ package nutrtiondesigner.nude.service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import nutrtiondesigner.nude.model.domain.*;
-import nutrtiondesigner.nude.model.dto.*;
+import nutrtiondesigner.nude.model.dto.item.ItemDto;
+import nutrtiondesigner.nude.model.dto.item.ItemInsertDto;
+import nutrtiondesigner.nude.model.dto.cart.CartListDto;
+import nutrtiondesigner.nude.model.dto.cart.DeleteCartDto;
+import nutrtiondesigner.nude.model.dto.cart.UpdateCartDto;
 import nutrtiondesigner.nude.repository.CartItemRepository;
 import nutrtiondesigner.nude.repository.CartRepository;
 import org.springframework.data.domain.Page;
@@ -29,12 +33,12 @@ public class CartService {
      * 메소드를 수행하는 동안 Transaction을 유지해야
      * 1차 캐시를 통해 변경감지를 사용할 수 있다.
      */
-    public void insertCart(CartInsertDto cartInsertDto) {
+    public void insertCart(ItemInsertDto itemInsertDto) {
         User user = userService.getMyUserWithAuthorities().get();
-        log.info("testestest : " + cartInsertDto.getItemCode());
-        Item item = itemService.getByCode(cartInsertDto.getItemCode());
+        log.info("testestest : " + itemInsertDto.getItemCode());
+        Item item = itemService.getByCode(itemInsertDto.getItemCode());
 
-        int quantity = cartInsertDto.getQuantity();
+        int quantity = itemInsertDto.getQuantity();
         int insertPrice = item.getPrice() * quantity;
 
         Optional<Cart> cartOptional = cartRepository.findByUserId(user.getId());
@@ -51,7 +55,7 @@ public class CartService {
 
         PageRequest pageRequest = PageRequest.of(0, 3);
         Page<CartItem> cartItems = cartRepository.findFetchJoinItemByCode(cart.getCode(), pageRequest);
-        Page<ItemDetailDto> itemList = cartItems.map(c -> new ItemDetailDto(c.getItem(), c.getQuantity()));
+        Page<ItemDto> itemList = cartItems.map(c -> new ItemDto(c.getItem(), c.getQuantity()));
 
         CartListDto cartList = new CartListDto(cart.getCode(), itemList.getContent(), cart.getPrice());
 
@@ -59,11 +63,11 @@ public class CartService {
     }
 
     public void updateCartItem(UpdateCartDto updateCartDto) {
-        CartItem cartItem = cartItemRepository.findByCartCodeAndItemCode(updateCartDto.getCartcode(), updateCartDto.getItemcode()).orElse(null);
+        CartItem cartItem = cartItemRepository.findByCartCodeAndItemCode(updateCartDto.getCartCode(), updateCartDto.getItemCode()).orElse(null);
         cartItem.updateQuantity(updateCartDto.getQuantity());
     }
 
     public void deleteCartItem(DeleteCartDto deleteCartDto) {
-        cartItemRepository.deleteAllByCartCodeAndItemCodes(deleteCartDto.getCartcode(), deleteCartDto.getItemcodes());
+        cartItemRepository.deleteAllByCartCodeAndItemCodes(deleteCartDto.getCartCode(), deleteCartDto.getItemCodes());
     }
 }

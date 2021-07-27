@@ -1,9 +1,11 @@
-package nutrtiondesigner.nude.model.dto;
+package nutrtiondesigner.nude.model.dto.cart;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import nutrtiondesigner.nude.model.dto.item.ItemDto;
+import nutrtiondesigner.nude.model.dto.util.SumNutrition;
 
 import java.util.List;
 
@@ -12,17 +14,17 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CartListDto {
-    private Long cartcode;
-    private List<ItemDetailDto> cartItemList;
+    private Long cartCode;
+    private List<ItemDto> cartItemList;
     private SumNutrition sumNutrition;
     private int price;
 
-    public CartListDto(Long code, List<ItemDetailDto> itemList, int price) {
-        cartcode = code;
+    public CartListDto(Long code, List<ItemDto> itemList, int changePrice) {
+        cartCode = code;
         cartItemList = itemList;
-        this.price = price;
+        price = changePrice;
         sumNutrition = new SumNutrition();
-        for (ItemDetailDto cartItem : itemList) {
+        for (ItemDto cartItem : itemList) {
             sumNutrition.sum(cartItem);
         }
     }
