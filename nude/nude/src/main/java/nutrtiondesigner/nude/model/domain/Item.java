@@ -38,4 +38,16 @@ public class Item {
     @OneToMany(mappedBy = "item", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<CategoryItem> categoryItems = new ArrayList<>();
 
+    public void updateInfo(Item item) {
+        name = item.getName();
+        imgPath = item.getImgPath();
+        status = item.getStatus();
+        stock = item.getStock();
+        price = item.getPrice();
+        calories = item.getCalories();
+        carbohydrate = item.getCarbohydrate();
+        protein = item.getProtein();
+        fat = item.getFat();
+        vegetable = item.getVegetable();
+    }
 }

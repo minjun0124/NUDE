@@ -15,12 +15,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
 
 @Service
 @Slf4j
 @RequiredArgsConstructor
+@Transactional
 public class ItemService {
 
     private final ItemRepository itemRepository;
@@ -34,6 +36,22 @@ public class ItemService {
         itemRepository.save(item);
 
         Category category = categoryRepository.findByName(upLoadForm.getCategory());
+        CategoryItem categoryItem = new CategoryItem(category, item);
+        categoryItemRepository.save(categoryItem);
+
+    }
+
+    public void modItem(ItemUpLoadForm changeForm) throws IOException {
+        String imgPath = FileUtil.uploadImage(changeForm.getImg());
+        Item changeItem = changeForm.toEntity(imgPath);
+
+        Item item = itemRepository.findById(changeForm.getItemCode()).orElse(null);
+
+        item.updateInfo(changeItem);
+
+        categoryItemRepository.deleteAllByItemCode(item.getCode());
+
+        Category category = categoryRepository.findByName(changeForm.getCategory());
         CategoryItem categoryItem = new CategoryItem(category, item);
         categoryItemRepository.save(categoryItem);
     }

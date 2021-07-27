@@ -12,6 +12,7 @@ import javax.validation.constraints.NotNull;
 @NoArgsConstructor
 @NotNull
 public class ItemUpLoadForm {
+    private Long itemCode;
     private MultipartFile img;
     private String category;
     private String name;
@@ -22,12 +23,13 @@ public class ItemUpLoadForm {
     private double protein = 0;
     private double fat = 0;
     private double vegetable = 0;
+    private StockStatus stockStatus = StockStatus.IN_STOCK;
 
     public Item toEntity(String imgPath) {
         return Item.builder()
                 .name(name)
                 .imgPath(imgPath)
-                .status(StockStatus.IN_STOCK)
+                .status(stockStatus)
                 .stock(stock)
                 .price(price)
                 .calories(calories)

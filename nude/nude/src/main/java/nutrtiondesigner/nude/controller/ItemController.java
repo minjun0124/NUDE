@@ -33,6 +33,14 @@ public class ItemController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PutMapping
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    public ResponseEntity modItem(ItemUpLoadForm upLoadForm) throws Exception {
+        itemService.modItem(upLoadForm);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
     @GetMapping("/{category}")
     public ResponseEntity categoryItem(@PathVariable("category") String category) {
         Page<ItemDto> itemDtoPage = itemService.getCategoryItems(category);

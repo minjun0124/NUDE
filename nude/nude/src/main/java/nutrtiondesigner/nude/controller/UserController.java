@@ -52,7 +52,7 @@ public class UserController {
         return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
     }
 
-    @PutMapping("/user/mod")
+    @PutMapping("/user")
     @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
     public ResponseEntity modUser(@Valid @RequestBody SignUpForm signUpForm) {
         userService.modInfo(signUpForm);
@@ -64,7 +64,7 @@ public class UserController {
     public ResponseEntity withdrawUser() {
         userService.withdraw();
         //TODO: 탈퇴 후 logout
-        
+
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
