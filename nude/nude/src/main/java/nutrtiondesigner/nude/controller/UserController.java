@@ -2,8 +2,11 @@ package nutrtiondesigner.nude.controller;
 
 import lombok.RequiredArgsConstructor;
 import nutrtiondesigner.nude.model.domain.User;
+import nutrtiondesigner.nude.model.dto.TokenDto;
+import nutrtiondesigner.nude.model.form.PwCheckForm;
 import nutrtiondesigner.nude.model.form.SignUpForm;
 import nutrtiondesigner.nude.service.UserService;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
@@ -16,11 +19,6 @@ import javax.validation.Valid;
 public class UserController {
 
     private final UserService userService;
-
-    @GetMapping("/hello")
-    public ResponseEntity<String> hello() {
-        return ResponseEntity.ok("hello");
-    }
 
     // UserDto 를 받아서 userService 의 signup 메소드를 호출
     @PostMapping("/signup")
@@ -42,5 +40,22 @@ public class UserController {
     @PreAuthorize("hasAnyRole('ADMIN')")
     public ResponseEntity<User> getUserInfo(@PathVariable String username) {
         return ResponseEntity.ok(userService.getUserWithAuthorities(username).get());
+    }
+
+    @PostMapping("/user/pwcheck")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public ResponseEntity<TokenDto> passwordCheck(@Valid @RequestBody PwCheckForm pwCheckForm) {
+        if (userService.passwordCheck(pwCheckForm)) {
+            return new ResponseEntity<>(HttpStatus.OK);
+        }
+        // TODO: Exception 처리
+        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+    }
+
+    @PutMapping("/user/mod")
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public ResponseEntity modUser(@Valid @RequestBody SignUpForm signUpForm) {
+        userService.modInfo(signUpForm);
+        return new ResponseEntity<>(HttpStatus.OK);
     }
 }

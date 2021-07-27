@@ -5,9 +5,12 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import nutrtiondesigner.nude.model.form.SignUpForm;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -57,4 +60,11 @@ public class User {
             inverseJoinColumns = {@JoinColumn(name = "authority_name", referencedColumnName = "authority_name")})
     private Set<Authority> authorities;
 
+    public void updateInfo(SignUpForm signUpForm, String changePw) {
+        username = signUpForm.getUsername();
+        password = changePw;
+        email = signUpForm.getEmail();
+        phone = signUpForm.getPhone();
+        address = signUpForm.getAddress();
+    }
 }

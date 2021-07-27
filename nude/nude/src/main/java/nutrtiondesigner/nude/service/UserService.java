@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import nutrtiondesigner.nude.model.domain.Authority;
 import nutrtiondesigner.nude.model.domain.Cart;
 import nutrtiondesigner.nude.model.domain.User;
+import nutrtiondesigner.nude.model.form.PwCheckForm;
 import nutrtiondesigner.nude.model.form.SignUpForm;
 import nutrtiondesigner.nude.repository.CartRepository;
 import nutrtiondesigner.nude.repository.UserRepository;
@@ -72,5 +73,21 @@ public class UserService {
     // 현재 SecurityContext 에 저장이 되어 있는 username 에 대한 유저객체와 권한정보를 가져올 수 있다.
     public Optional<User> getMyUserWithAuthorities() {
         return SecurityUtil.getCurrentUsername().flatMap(userRepository::findOneWithAuthoritiesByUsername);
+    }
+
+    public Boolean passwordCheck(PwCheckForm passwordForm) {
+        User user = getMyUserWithAuthorities().get();
+        if (passwordEncoder.matches(passwordForm.getPassword(), user.getPassword())) {
+            return true;
+        }
+
+        return false;
+    }
+
+    @Transactional
+    public void modInfo(SignUpForm signUpForm) {
+        User user = userRepository.findOneWithAuthoritiesByUsername(signUpForm.getUsername()).orElse(null);
+        String changePw = passwordEncoder.encode(signUpForm.getPassword());
+        user.updateInfo(signUpForm, changePw);
     }
 }
