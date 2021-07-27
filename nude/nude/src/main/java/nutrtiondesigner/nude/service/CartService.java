@@ -15,6 +15,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
 
 @Slf4j
@@ -44,8 +45,14 @@ public class CartService {
         Optional<Cart> cartOptional = cartRepository.findByUserId(user.getId());
         Cart cart = cartOptional.get();
         cart.changePrice(cart.getPrice() + insertPrice);
-        CartItem cartItem = new CartItem(cart, item, quantity);
-        cartItemRepository.save(cartItem);
+        Optional<CartItem> cartItemOptional = cartItemRepository.findByItemCode(item.getCode());
+        if (cartItemOptional.isEmpty()) {
+            CartItem cartItem = new CartItem(cart, item, quantity);
+            cartItemRepository.save(cartItem);
+        } else {
+            CartItem cartItem = cartItemOptional.get();
+            cartItem.diffQuantity(quantity);
+        }
     }
 
     @Transactional(readOnly = true)
@@ -63,11 +70,24 @@ public class CartService {
     }
 
     public void updateCartItem(UpdateCartDto updateCartDto) {
+        Cart cart = cartRepository.findById(updateCartDto.getCartCode()).get();
+        Item item = itemService.getByCode(updateCartDto.getItemCode());
         CartItem cartItem = cartItemRepository.findByCartCodeAndItemCode(updateCartDto.getCartCode(), updateCartDto.getItemCode()).orElse(null);
+        int diffPrice = (updateCartDto.getQuantity() - cartItem.getQuantity()) * item.getPrice();
         cartItem.updateQuantity(updateCartDto.getQuantity());
+        cart.diffPrice(diffPrice);
     }
 
     public void deleteCartItem(DeleteCartDto deleteCartDto) {
+        int minusPrice = 0;
+        Cart cart = cartRepository.findById(deleteCartDto.getCartCode()).orElse(null);
+        List<CartItem> cartItems = cartItemRepository.findFetchJoinByCartCodeAndItemCodes(deleteCartDto.getCartCode(), deleteCartDto.getItemCodes());
+        for (CartItem ci : cartItems) {
+            minusPrice -= ci.getQuantity() * ci.getItem().getPrice();
+        }
+        cart.diffPrice(minusPrice);
+
         cartItemRepository.deleteAllByCartCodeAndItemCodes(deleteCartDto.getCartCode(), deleteCartDto.getItemCodes());
+
     }
 }

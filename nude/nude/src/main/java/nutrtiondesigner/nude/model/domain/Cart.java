@@ -33,4 +33,8 @@ public class Cart {
     public void changePrice(int changePrice) {
         price = changePrice;
     }
+
+    public void diffPrice(int diffPrice) {
+        price += diffPrice;
+    }
 }
