@@ -6,6 +6,7 @@ import nutrtiondesigner.nude.model.domain.*;
 import nutrtiondesigner.nude.model.dto.CartInsertDto;
 import nutrtiondesigner.nude.model.dto.ItemDetailDto;
 import nutrtiondesigner.nude.model.dto.CartListDto;
+import nutrtiondesigner.nude.model.dto.UpdateCartDto;
 import nutrtiondesigner.nude.repository.CartItemRepository;
 import nutrtiondesigner.nude.repository.CartRepository;
 import org.springframework.data.domain.Page;
@@ -55,8 +56,13 @@ public class CartService {
         Page<CartItem> cartItems = cartRepository.findFetchJoinItemByCode(cart.getCode(), pageRequest);
         Page<ItemDetailDto> itemList = cartItems.map(c -> new ItemDetailDto(c.getItem(), c.getQuantity()));
 
-        CartListDto cartList = new CartListDto(itemList.getContent(), cart.getPrice());
+        CartListDto cartList = new CartListDto(cart.getCode(), itemList.getContent(), cart.getPrice());
 
         return cartList;
+    }
+
+    public void updateCartItem(UpdateCartDto updateCartDto) {
+        CartItem cartItem = cartItemRepository.findByCartCodeAndItemCode(updateCartDto.getCartcode(), updateCartDto.getItemcode()).orElse(null);
+        cartItem.updateQuantity(updateCartDto.getQuantity());
     }
 }

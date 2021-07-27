@@ -12,11 +12,13 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class CartListDto {
+    private Long cartcode;
     private List<ItemDetailDto> cartItemList;
     private SumNutrition sumNutrition;
     private int price;
 
-    public CartListDto(List<ItemDetailDto> itemList, int price) {
+    public CartListDto(Long code, List<ItemDetailDto> itemList, int price) {
+        cartcode = code;
         cartItemList = itemList;
         this.price = price;
         sumNutrition = new SumNutrition();

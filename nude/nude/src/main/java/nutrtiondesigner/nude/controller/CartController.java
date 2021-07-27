@@ -3,6 +3,7 @@ package nutrtiondesigner.nude.controller;
 import lombok.RequiredArgsConstructor;
 import nutrtiondesigner.nude.model.dto.CartInsertDto;
 import nutrtiondesigner.nude.model.dto.CartListDto;
+import nutrtiondesigner.nude.model.dto.UpdateCartDto;
 import nutrtiondesigner.nude.service.CartService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,4 +33,11 @@ public class CartController {
         return new ResponseEntity<>(cartList, HttpStatus.OK);
     }
 
+    @PutMapping
+    @PreAuthorize("hasAnyRole('USER', 'ADMIN')")
+    public ResponseEntity updateCartItem(@RequestBody UpdateCartDto updateCartDto){
+        cartService.updateCartItem(updateCartDto);
+
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
 }
