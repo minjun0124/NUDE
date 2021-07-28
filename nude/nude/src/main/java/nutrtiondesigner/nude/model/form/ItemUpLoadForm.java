@@ -6,6 +6,8 @@ import nutrtiondesigner.nude.model.domain.Item;
 import nutrtiondesigner.nude.model.enumeration.StockStatus;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 
 @Data
@@ -23,6 +25,7 @@ public class ItemUpLoadForm {
     private double protein = 0;
     private double fat = 0;
     private double vegetable = 0;
+    @Enumerated(EnumType.STRING)
     private StockStatus stockStatus = StockStatus.IN_STOCK;
 
     public Item toEntity(String imgPath) {

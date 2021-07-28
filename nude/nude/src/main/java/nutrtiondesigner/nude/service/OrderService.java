@@ -19,7 +19,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class OrderService {
 
@@ -28,6 +28,7 @@ public class OrderService {
     private final ItemRepository itemRepository;
     private final UserService userService;
 
+    @Transactional
     public void insertOrder(OrderInsertDto orderInsertDto) {
         User user = userService.getMyUserWithAuthorities().get();
         Orders orders = new Orders(user, orderInsertDto.getPrice());
@@ -69,6 +70,7 @@ public class OrderService {
         return orderDetailDto;
     }
 
+    @Transactional
     public void updateOrderStatus(OrderStatusDto orderStatusDto) {
         Orders orders = ordersRepository.findById(orderStatusDto.getOrderCode()).orElse(null);
         orders.updateStatus(orderStatusDto);

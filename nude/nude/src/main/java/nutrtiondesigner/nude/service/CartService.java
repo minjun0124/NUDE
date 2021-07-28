@@ -20,7 +20,7 @@ import java.util.Optional;
 
 @Slf4j
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class CartService {
 
@@ -34,6 +34,7 @@ public class CartService {
      * 메소드를 수행하는 동안 Transaction을 유지해야
      * 1차 캐시를 통해 변경감지를 사용할 수 있다.
      */
+    @Transactional
     public void insertCart(ItemInsertDto itemInsertDto) {
         User user = userService.getMyUserWithAuthorities().get();
         log.info("testestest : " + itemInsertDto.getItemCode());
@@ -55,7 +56,6 @@ public class CartService {
         }
     }
 
-    @Transactional(readOnly = true)
     public CartListDto getUserCart() {
         User user = userService.getMyUserWithAuthorities().get();
         Cart cart = cartRepository.findByUserId(user.getId()).get();
@@ -69,6 +69,7 @@ public class CartService {
         return cartList;
     }
 
+    @Transactional
     public void updateCartItem(UpdateCartDto updateCartDto) {
         Cart cart = cartRepository.findById(updateCartDto.getCartCode()).get();
         Item item = itemService.getByCode(updateCartDto.getItemCode());
@@ -78,6 +79,7 @@ public class CartService {
         cart.diffPrice(diffPrice);
     }
 
+    @Transactional
     public void deleteCartItem(DeleteCartDto deleteCartDto) {
         int minusPrice = 0;
         Cart cart = cartRepository.findById(deleteCartDto.getCartCode()).orElse(null);

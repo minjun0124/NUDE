@@ -22,13 +22,14 @@ import java.io.IOException;
 @Service
 @Slf4j
 @RequiredArgsConstructor
-@Transactional
+@Transactional(readOnly = true)
 public class ItemService {
 
     private final ItemRepository itemRepository;
     private final CategoryRepository categoryRepository;
     private final CategoryItemRepository categoryItemRepository;
 
+    @Transactional
     public void upload(ItemUpLoadForm upLoadForm) throws IOException {
         String imgPath = FileUtil.uploadImage(upLoadForm.getImg());
         Item item = upLoadForm.toEntity(imgPath);
@@ -41,6 +42,7 @@ public class ItemService {
 
     }
 
+    @Transactional
     public void modItem(ItemUpLoadForm changeForm) throws IOException {
         String imgPath = FileUtil.uploadImage(changeForm.getImg());
         Item changeItem = changeForm.toEntity(imgPath);
