@@ -1,10 +1,11 @@
 package nutrtiondesigner.nude.service;
 
 import lombok.RequiredArgsConstructor;
+import nutrtiondesigner.nude.model.domain.Answer;
 import nutrtiondesigner.nude.model.domain.Question;
 import nutrtiondesigner.nude.model.domain.User;
-import nutrtiondesigner.nude.model.dto.QuestionInsertDto;
-import nutrtiondesigner.nude.model.dto.QuestionsDto;
+import nutrtiondesigner.nude.model.dto.*;
+import nutrtiondesigner.nude.repository.AnswerRepository;
 import nutrtiondesigner.nude.repository.QuestionRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -19,6 +20,7 @@ import java.util.List;
 public class QuestionService {
 
     private final QuestionRepository questionRepository;
+    private final AnswerRepository answerRepository;
     private final UserService userService;
 
     @Transactional
@@ -36,5 +38,21 @@ public class QuestionService {
         Page<QuestionsDto> questionsDtos = questionPage.map(q -> new QuestionsDto(q));
 
         return questionsDtos.getContent();
+    }
+
+    @Transactional
+    public void insertAnswer(Long questionCode, InsertAnswerDto insertAnswerDto) {
+        Question question = questionRepository.findById(questionCode).orElse(null);
+        Answer answer = insertAnswerDto.toEntity(question);
+
+        answerRepository.save(answer);
+    }
+
+    public List<AnswerDto> getAnswers(Long questionCode) {
+        PageRequest pageRequest = PageRequest.of(0, 7);
+        Page<Answer> answers = answerRepository.findAllByQuestions_Code(questionCode, pageRequest);
+        Page<AnswerDto> answerDtos = answers.map(a -> new AnswerDto(a));
+
+        return answerDtos.getContent();
     }
 }

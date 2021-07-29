@@ -22,7 +22,7 @@ public class Cart {
     private int price;
 
     @OneToOne(fetch = LAZY)
-    @JoinColumn(name = "member_id", unique = true)
+    @JoinColumn(name = "user_id", unique = true)
     private User user;
 
     public Cart(User user, int price) {

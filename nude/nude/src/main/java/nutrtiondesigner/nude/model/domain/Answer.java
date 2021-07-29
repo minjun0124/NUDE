@@ -1,12 +1,18 @@
 package nutrtiondesigner.nude.model.domain;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 
 import static javax.persistence.FetchType.*;
 
 @Entity
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 @Getter
 public class Answer {
 
@@ -17,6 +23,6 @@ public class Answer {
     private String contents;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "question_coce")
+    @JoinColumn(name = "question_code")
     private Question questions;
 }

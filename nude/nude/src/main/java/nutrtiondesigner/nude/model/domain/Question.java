@@ -26,7 +26,7 @@ public class Question {
     private Boolean isAnswered;
 
     @ManyToOne(fetch = LAZY)
-    @JoinColumn(name = "member_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(mappedBy = "questions", orphanRemoval = true)
