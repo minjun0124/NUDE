@@ -1,7 +1,6 @@
 package nutrtiondesigner.nude.model.domain;
 
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -12,6 +11,9 @@ import static javax.persistence.FetchType.*;
 
 @Entity
 @Getter
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
 public class Question {
 
     @Id
