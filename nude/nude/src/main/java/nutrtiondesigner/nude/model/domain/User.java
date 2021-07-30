@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import nutrtiondesigner.nude.model.audit.BaseTimeEntity;
 import nutrtiondesigner.nude.model.form.SignUpForm;
 
 import javax.persistence.*;
@@ -15,7 +16,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class User {
+public class User extends BaseTimeEntity {
 
     @JsonIgnore
     @Id

@@ -2,6 +2,7 @@ package nutrtiondesigner.nude.model.domain;
 
 
 import lombok.*;
+import nutrtiondesigner.nude.model.audit.BaseEntity;
 import nutrtiondesigner.nude.model.enumeration.StockStatus;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class Item {
+public class Item extends BaseEntity {
     @Id
     @GeneratedValue
     @Column(name = "item_code")

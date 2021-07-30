@@ -3,13 +3,14 @@ package nutrtiondesigner.nude.model.domain;
 
 import lombok.Getter;
 import lombok.NonNull;
+import nutrtiondesigner.nude.model.audit.BaseTimeEntity;
 import nutrtiondesigner.nude.model.enumeration.DelivStatus;
 
 import javax.persistence.*;
 
 @Entity
 @Getter
-public class Delivery {
+public class Delivery extends BaseTimeEntity {
     @Id
     @GeneratedValue
     private Long code;

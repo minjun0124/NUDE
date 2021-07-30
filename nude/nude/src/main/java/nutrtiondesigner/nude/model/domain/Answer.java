@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import nutrtiondesigner.nude.model.audit.BaseEntity;
 
 import javax.persistence.*;
 
@@ -14,7 +15,7 @@ import static javax.persistence.FetchType.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class Answer {
+public class Answer extends BaseEntity {
 
     @Id
     @GeneratedValue

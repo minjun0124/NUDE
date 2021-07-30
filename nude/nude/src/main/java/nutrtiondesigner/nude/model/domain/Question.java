@@ -1,6 +1,7 @@
 package nutrtiondesigner.nude.model.domain;
 
 import lombok.*;
+import nutrtiondesigner.nude.model.audit.BaseEntity;
 
 import javax.persistence.*;
 
@@ -14,7 +15,7 @@ import static javax.persistence.FetchType.*;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class Question {
+public class Question extends BaseEntity {
 
     @Id
     @GeneratedValue
