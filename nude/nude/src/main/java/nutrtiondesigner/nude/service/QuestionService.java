@@ -12,6 +12,7 @@ import nutrtiondesigner.nude.repository.AnswerRepository;
 import nutrtiondesigner.nude.repository.QuestionRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -35,8 +36,7 @@ public class QuestionService {
 
     public List<QuestionsDto> getQuestionList() {
         User user = userService.getMyUserWithAuthorities().orElse(null);
-        //TODO: Sort by created date
-        PageRequest pageRequest = PageRequest.of(0, 7);
+        PageRequest pageRequest = PageRequest.of(0, 7, Sort.by(Sort.Direction.DESC, "createdDate"));
         Page<Question> questionPage = questionRepository.findAllByUserId(user.getId(), pageRequest);
         Page<QuestionsDto> questionsDtos = questionPage.map(q -> new QuestionsDto(q));
 

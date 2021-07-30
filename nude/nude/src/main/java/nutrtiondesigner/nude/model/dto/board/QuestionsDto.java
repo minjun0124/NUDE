@@ -8,14 +8,14 @@ import java.time.LocalDateTime;
 @Data
 public class QuestionsDto {
     private String title;
-    //TODO: Auditing
-//    private LocalDateTime createdDate;
+    private LocalDateTime createdDate;
     private Long questionCode;
     private String contents;
     private Boolean isAnswered;
 
     public QuestionsDto(Question q) {
         title = q.getTitle();
+        createdDate = q.getCreatedDate();
         questionCode = q.getCode();
         contents = q.getContents();
         isAnswered = q.getIsAnswered();
