@@ -10,14 +10,15 @@ public class NoticeDto {
     private Long code;
     private String title;
     private String contents;
-    // TODO: Auditing
-//    private String adminName;
-//    private LocalDateTime createdTime;
+    private String adminName;
+    private LocalDateTime createdTime;
     private int viewCount;
 
     public NoticeDto(Notice notice) {
         code = notice.getCode();
         title = notice.getTitle();
+        adminName = notice.getCreatedBy();
+        createdTime = notice.getCreatedDate();
         viewCount = notice.getViewcount();
     }
 }

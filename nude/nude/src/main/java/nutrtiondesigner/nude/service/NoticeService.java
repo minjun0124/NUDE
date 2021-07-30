@@ -7,6 +7,7 @@ import nutrtiondesigner.nude.model.dto.board.NoticeDto;
 import nutrtiondesigner.nude.repository.NoticeRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -26,8 +27,7 @@ public class NoticeService {
     }
 
     public List<NoticeDto> getNotices() {
-        //TODO: sort by createdDate
-        PageRequest pageRequest = PageRequest.of(0, 8);
+        PageRequest pageRequest = PageRequest.of(0, 8, Sort.by(Sort.Direction.DESC, "createdDate"));
         Page<Notice> noticePage = noticeRepository.findAll(pageRequest);
         Page<NoticeDto> noticeDtoPage = noticePage.map(n -> new NoticeDto(n));
 
