@@ -1,4 +1,4 @@
-package nutrtiondesigner.nude.model.dto;
+package nutrtiondesigner.nude.model.dto.board;
 
 import lombok.Builder;
 import lombok.Data;

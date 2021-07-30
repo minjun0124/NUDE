@@ -1,4 +1,4 @@
-package nutrtiondesigner.nude.model.dto;
+package nutrtiondesigner.nude.model.dto.board;
 
 import lombok.Data;
 import nutrtiondesigner.nude.model.domain.Answer;

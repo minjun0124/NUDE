@@ -1,7 +1,10 @@
 package nutrtiondesigner.nude.controller;
 
 import lombok.RequiredArgsConstructor;
-import nutrtiondesigner.nude.model.dto.*;
+import nutrtiondesigner.nude.model.dto.board.AnswerDto;
+import nutrtiondesigner.nude.model.dto.board.InsertAnswerDto;
+import nutrtiondesigner.nude.model.dto.board.QuestionInsertDto;
+import nutrtiondesigner.nude.model.dto.board.QuestionsDto;
 import nutrtiondesigner.nude.service.QuestionService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

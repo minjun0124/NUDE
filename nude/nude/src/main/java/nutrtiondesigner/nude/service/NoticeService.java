@@ -2,8 +2,8 @@ package nutrtiondesigner.nude.service;
 
 import lombok.RequiredArgsConstructor;
 import nutrtiondesigner.nude.model.domain.Notice;
-import nutrtiondesigner.nude.model.dto.InsertNoticeDto;
-import nutrtiondesigner.nude.model.dto.NoticeDto;
+import nutrtiondesigner.nude.model.dto.board.InsertNoticeDto;
+import nutrtiondesigner.nude.model.dto.board.NoticeDto;
 import nutrtiondesigner.nude.repository.NoticeRepository;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

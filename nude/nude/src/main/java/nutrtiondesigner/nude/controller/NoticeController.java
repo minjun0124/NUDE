@@ -1,8 +1,8 @@
 package nutrtiondesigner.nude.controller;
 
 import lombok.RequiredArgsConstructor;
-import nutrtiondesigner.nude.model.dto.InsertNoticeDto;
-import nutrtiondesigner.nude.model.dto.NoticeDto;
+import nutrtiondesigner.nude.model.dto.board.InsertNoticeDto;
+import nutrtiondesigner.nude.model.dto.board.NoticeDto;
 import nutrtiondesigner.nude.service.NoticeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
