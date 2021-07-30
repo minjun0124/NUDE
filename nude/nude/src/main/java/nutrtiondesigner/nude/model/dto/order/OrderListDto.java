@@ -6,12 +6,12 @@ import nutrtiondesigner.nude.model.enumeration.OrderStatus;
 
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
+import java.time.LocalDateTime;
 
 @Data
 public class OrderListDto {
     private Long orderCode;
-//    TODO: Auditing - 주문 일자
-//    private LocalDateTime orderDate;
+    private LocalDateTime orderDate;
     private int price;
 
     @Enumerated(EnumType.STRING)
@@ -20,6 +20,7 @@ public class OrderListDto {
     public OrderListDto(Orders orders) {
         orderCode = orders.getCode();
         price = orders.getPrice();
+        orderDate = orders.getCreatedDate();
         orderStatus = orders.getStatus();
     }
 }

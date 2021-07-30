@@ -10,7 +10,7 @@ spring:
     open-in-view: false
     generate-ddl: true
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       #      show_sql: true       #sysout
       format_sql: true

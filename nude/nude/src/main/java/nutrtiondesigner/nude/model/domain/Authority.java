@@ -5,7 +5,6 @@ import lombok.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 
 @Entity
 @Getter
@@ -14,7 +13,6 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor
 public class Authority {
 
-    // TODO: Auditing Lazy process
     /**
      * 권한명
      */

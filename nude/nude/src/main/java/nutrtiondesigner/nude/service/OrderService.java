@@ -60,12 +60,11 @@ public class OrderService {
         User user = userService.getMyUserWithAuthorities().get();
         Orders orders = ordersRepository.findByCodeAndUserId(ordercode, user.getId()).orElse(null);
         PageRequest pageRequest = PageRequest.of(0, 4);
-        Page<OrderItem> orderItems = orderItemRepository.findFetchJoinByOrderCode(orders.getCode(), pageRequest);
+        Page<OrderItem> orderItems = orderItemRepository.findFetchJoinByOrderCode(ordercode, pageRequest);
 
-        Page<ItemDto> ordersDtoList = orderItems.map(o -> new ItemDto(o.getItem(), o.getQuantity()));
+        Page<ItemDto> itemList = orderItems.map(o -> new ItemDto(o.getItem(), o.getQuantity()));
 
-        OrderDetailDto orderDetailDto = new OrderDetailDto(orders.getCode(), ordersDtoList.getContent()
-                , orders.getPrice(), orders.getStatus());
+        OrderDetailDto orderDetailDto = new OrderDetailDto(orders, itemList);
 
         return orderDetailDto;
     }

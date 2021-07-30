@@ -47,16 +47,6 @@ public class ItemController {
     }
 
     /**
-     * TODO: Auditing 추가
-     */
-//    @GetMapping("/new")
-//    public ResponseEntity newItem(){
-//        Page<ItemDto> itemDtoPage = itemService.getNewItems();
-//
-//        return new ResponseEntity<>(itemDtoPage.getContent(), HttpStatus.OK);
-//    }
-
-    /**
      * TODO: 아이템 조회 시 카테고리를 항상 꺼내올 수 있도록
      * @return
      */

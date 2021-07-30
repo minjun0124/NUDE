@@ -9,6 +9,6 @@ import org.springframework.data.repository.query.Param;
 
 public interface OrderItemRepository extends JpaRepository<OrderItem, Long> {
     @Query(value = "select oi from OrderItem oi join fetch oi.item where oi.orders.code = :orderItemCode"
-    , countQuery = "select oi from OrderItem oi where oi.orders.code = :orderItemCode")
+    , countQuery = "select count(oi) from OrderItem oi where oi.orders.code = :orderItemCode")
     Page<OrderItem> findFetchJoinByOrderCode(@Param("orderItemCode") Long orderItemCode, Pageable pageable);
 }
