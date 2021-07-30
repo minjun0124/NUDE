@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.io.IOException;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 @Service
 @Slf4j
@@ -76,8 +78,15 @@ public class ItemService {
         return itemDtoPage;
     }
 
+    public Page<ItemDto> getNewItems() {
+        PageRequest pageRequest = PageRequest.of(0, 15, Sort.by(Sort.Direction.DESC, "createdDate"));
+        Page<Item> newItems = itemRepository.findAllByCreatedDateBetween(LocalDateTime.now().minusDays(7), LocalDateTime.now(), pageRequest);
+        Page<ItemDto> itemDtoPage = newItems.map(i -> new ItemDto(i));
+
+        return itemDtoPage;
+    }
+
     public Item getByCode(Long code) {
         return itemRepository.findById(code).orElse(null);
     }
-
 }
