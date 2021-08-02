@@ -5,6 +5,7 @@ import nutrtiondesigner.nude.jwt.JwtAuthenticationEntryPoint;
 import nutrtiondesigner.nude.jwt.JwtSecurityConfig;
 import nutrtiondesigner.nude.jwt.TokenProvider;
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.builders.WebSecurity;
@@ -86,8 +87,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 // permitAll() - 토큰이 없는 상태에서 요청이 들어오는 Request 에 대해서 permit all 설정
                 .and()
                 .authorizeRequests()
-                .antMatchers("/api/authenticate").permitAll()
-                .antMatchers("/api/signup").permitAll()
+                .antMatchers(HttpMethod.POST, "/auth").permitAll()
+                .antMatchers(HttpMethod.POST, "/users").permitAll()
                 .antMatchers("/item/{category}").permitAll()
                 .antMatchers("/item/best").permitAll()
                 .anyRequest().authenticated()

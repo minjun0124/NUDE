@@ -1,6 +1,7 @@
 package nutrtiondesigner.nude.service;
 
 import lombok.RequiredArgsConstructor;
+import nutrtiondesigner.nude.exception.StockShortageException;
 import nutrtiondesigner.nude.model.domain.Item;
 import nutrtiondesigner.nude.model.domain.OrderItem;
 import nutrtiondesigner.nude.model.domain.Orders;
@@ -41,6 +42,10 @@ public class OrderService {
         List<ItemInsertDto> codeList = orderInsertDto.getCodeList();
         for (ItemInsertDto order : codeList) {
             Item item = itemRepository.findById(order.getItemCode()).orElse(null);
+            if (item.getStock() < order.getQuantity()) {
+                throw new StockShortageException(String.format("Item[%d] : 재고가 부족합니다.", item.getCode()));
+            }
+
             OrderItem orderItem = new OrderItem(orders, item, order.getQuantity());
             orderItemRepository.save(orderItem);
         }

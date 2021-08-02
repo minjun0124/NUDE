@@ -1,6 +1,8 @@
 package nutrtiondesigner.nude.controller;
 
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import nutrtiondesigner.nude.exception.UserNotFoundException;
 import nutrtiondesigner.nude.jwt.JwtFilter;
 import nutrtiondesigner.nude.jwt.TokenProvider;
 import nutrtiondesigner.nude.model.form.SignInForm;
@@ -21,14 +23,15 @@ import javax.validation.Valid;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api")
+@Slf4j
+@RequestMapping("/auth")
 public class AuthController {
 
     private final TokenProvider tokenProvider;
     // 스프링 시큐리티의 인증에 대한 지원을 설정하는 몇가지 메소드를 가지고 있다.
     private final AuthenticationManagerBuilder authenticationManagerBuilder;
 
-    @PostMapping("/authenticate")
+    @PostMapping
     public ResponseEntity<TokenDto> authorize(@Valid @RequestBody SignInForm signInForm) {
 
         // username, password 를 가지고 Authentication Token 생성
