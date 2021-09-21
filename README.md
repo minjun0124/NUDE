@@ -6,10 +6,10 @@
 
 - SafeFood (SafeFood Version.1)
 	- SSR, JPA 적용
-    - Link : https://github.com/minjun0124/SafeFood (현재 위치)
+    - Link : https://github.com/minjun0124/SafeFood
 - Nutrition-Designer (SafeFood Version.2)
 	- CSR, RESTful 적용
-    - Link : https://github.com/minjun0124/NUDE
+    - Link : https://github.com/minjun0124/NUDE (현재 위치)
 - Nutrition-Designer-MSA (SafeFood Version.3)
 	- MSA 전환
     - Link : https://github.com/minjun0124/nude-msa
@@ -28,17 +28,21 @@ ___
 ---
 사용자가 목표로 설정한 영양소에 맞춰 주문할 수 있도록 도와주는 식단 개선 영양소 설계 프로젝트.
 
-<h3>서비스 모델</h3>
-- 기존 [SafeFood 프로젝트](https://github.com/minjun0124/SafeFood)의 서비스 모델을 변경한다.
-- 추가될 기능
-	- 식단 개선에 도움을 주는 것을 목표로 한다.
-	- 사용자가 일 단위, 주 단위로 설정한 섭취할 목표 영양소를 그래프로 나타낸다.
-	- 사용자가 장바구니에 담은 상품의 영양소와 설정한 목표치를 대조하여 보여주며
-	  목표치와 근사한 영양소를 섭취할 수 있도록 한다.
-	- 아이템 선호도 기반의 추천 알고리즘(Slope-one 알고리즘)을 도입하여 상품을 추천한다.
-- 제거된 기능
-	- 사용자의 알러지 정보를 기반으로 안전한 식품을 섭취할 수 있도록 정보를 제공한다.
-	- 섭취한 영양소를 기반으로 부족한 영양소를 채울 수 있는 식품을 추천한다.
+**[ 서비스 모델 ]**
+
+- 기존 [SafeFood 프로젝트](https://github.com/minjun0124/SafeFood) 의 서비스 모델을 변경한다.
+
+**[ 추가될 기능 ]**
+- 식단 개선에 도움을 주는 것을 목표로 한다.
+- 사용자가 일 단위, 주 단위로 설정한 섭취할 목표 영양소를 그래프로 나타낸다.
+- 사용자가 장바구니에 담은 상품의 영양소와 설정한 목표치를 대조하여 보여주며
+    목표치와 근사한 영양소를 섭취할 수 있도록 한다.
+- 아이템 선호도 기반의 추천 알고리즘(Slope-one 알고리즘)을 도입하여 상품을 추천한다.
+
+**[ 제거된 기능 ]**
+
+- 사용자의 알러지 정보를 기반으로 안전한 식품을 섭취할 수 있도록 정보를 제공한다.
+- 섭취한 영양소를 기반으로 부족한 영양소를 채울 수 있는 식품을 추천한다.
 
 <br>
 <br>
