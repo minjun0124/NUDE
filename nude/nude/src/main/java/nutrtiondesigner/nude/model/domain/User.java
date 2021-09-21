@@ -1,6 +1,7 @@
 package nutrtiondesigner.nude.model.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import io.swagger.annotations.ApiModel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -16,6 +17,7 @@ import java.util.Set;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@ApiModel(description = "User Detail Info Domain instance")
 public class User extends BaseTimeEntity {
 
     @JsonIgnore

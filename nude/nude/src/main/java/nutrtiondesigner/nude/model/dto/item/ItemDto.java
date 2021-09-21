@@ -1,5 +1,6 @@
 package nutrtiondesigner.nude.model.dto.item;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,6 +13,7 @@ import nutrtiondesigner.nude.model.domain.Item;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
 public class ItemDto {
     private Long code;
     private String img;
