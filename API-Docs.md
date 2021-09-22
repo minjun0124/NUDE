@@ -1,6 +1,10 @@
 # API-Docs
 
-API-Docs [ Swagger-UI (http://localhost:8080/swagger-ui/#/) ]
+API-Docs [ Swagger-UI (http://localhost:8080/swagger-ui/#/) ] </br>
+
+<br>
+
+상세 보기 : [포스트 맨 API-Docs](https://documenter.getpostman.com/view/9222105/UUxujqJk)
 
 <br>
 
@@ -33,5 +37,3 @@ API-Docs [ Swagger-UI (http://localhost:8080/swagger-ui/#/) ]
 <img src="/readme_ref/API-Docs/NoticeController.PNG" title="NoticeAPI" alt="NoticeAPI"></img><br/>
 
 <br>
-
-상세 보기 : [포스트 맨 API-Docs](https://documenter.getpostman.com/view/9222105/UUxujqJk)
