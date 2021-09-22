@@ -7,9 +7,9 @@
 - SafeFood (SafeFood Version.1)
 	- SSR, JPA 적용
     - Link : https://github.com/minjun0124/SafeFood
-- Nutrition-Designer (SafeFood Version.2)
+- Nutrition-Designer (SafeFood Version.2) ---- (현재 위치)
 	- CSR, RESTful 적용
-    - Link : https://github.com/minjun0124/NUDE (현재 위치)
+    - Link : https://github.com/minjun0124/NUDE
 - Nutrition-Designer-MSA (SafeFood Version.3)
 	- MSA 전환
     - Link : https://github.com/minjun0124/nude-msa
@@ -149,7 +149,7 @@ RFC7519 web 표준으로 Json객체를 사용해서 토큰 자체에 정보들�
 <br>
 JWT는 Header, Payload, Signature 3부분으로 구성
 - Header : signature 정보를 해싱하기 위한 알고리즘 정보를 가지고 있음
-- Payload : 서버와 크라이언트가 주고받는, 시스템에서 실제로 사용될 정보에 대한
+- Payload : 서버와 클라이언트가 주고받는, 시스템에서 실제로 사용될 정보에 대한
     내용들을 담고 있음
 - Signature : 토큰의 유효성 검증을 위한 문자열. 이 문자열을 통해 서버에서는 이 토큰이 유효한 토큰인지를 검증
 
